@@ -27,7 +27,7 @@
   $fib = fibonacci(25, true);
   ?>
 
-<div class="container mt-5">
+  <div class="container mt-5">
     <h2>Fibonacci</h2>
     <?php
     foreach ($fib as $key => $item) {

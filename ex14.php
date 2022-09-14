@@ -12,34 +12,34 @@
 <body>
 
   <?php
-  $texto = isset($_GET['texto']) ? $_GET['texto'] : '';
-  $palavra = isset($_GET['palavra']) ? $_GET['palavra'] : '';
+    $texto = isset($_GET['texto']) ? $_GET['texto'] : '';
+    $palavra = isset($_GET['palavra']) ? $_GET['palavra'] : '';
 
-  $show = "style='display:none;'";
-  $arrLetras = $arrLetUniq = array();
-  if (isset($_GET['texto'], $_GET['palavra'])) {
-    $pos = strpos($texto, $palavra);
-    if ($pos != false) {
-      $palavraInicial = $pos;
-      $palavraFinal = $pos + strlen($palavra);
-      $letras = strlen($texto);
-      $arrPalavras = preg_split("/[\s,.;:_!?]+/", $texto);
-      $textoSemCaracteresEspeciais = preg_replace("/[\s,.;:_!?]+/", '', $texto);
+    $show = "style='display:none;'";
+    $arrLetras = $arrLetUniq = array();
+    if (isset($_GET['texto'], $_GET['palavra'])) {
+      $pos = strpos($texto, $palavra);
+      if ($pos != false) {
+        $palavraInicial = $pos;
+        $palavraFinal = $pos + strlen($palavra);
+        $letras = strlen($texto);
+        $arrPalavras = preg_split("/[\s,.;:_!?]+/", $texto);
+        $textoSemCaracteresEspeciais = preg_replace("/[\s,.;:_!?]+/", '', $texto);
 
-      for ($i = 0; $i < strlen($textoSemCaracteresEspeciais); $i++) {
-        if ($textoSemCaracteresEspeciais[$i] != "/[\s,.;:_!?]+/") {
-          array_push($arrLetras, $textoSemCaracteresEspeciais[$i]);
+        for ($i = 0; $i < strlen($textoSemCaracteresEspeciais); $i++) {
+          if ($textoSemCaracteresEspeciais[$i] != "/[\s,.;:_!?]+/") {
+            array_push($arrLetras, $textoSemCaracteresEspeciais[$i]);
+          }
+        }
+
+        $arrLetUniq = array_unique($arrLetras);
+        foreach ($arrLetUniq as $key => $item) {
+          count(array_keys($arrLetras, $item));
         }
       }
 
-      $arrLetUniq = array_unique($arrLetras);
-      foreach ($arrLetUniq as $key => $item) {
-        count(array_keys($arrLetras, $item));
-      }
+      $show = "style='display:block;'";
     }
-
-    $show = "style='display:block;'";
-  }
   ?>
 
 
